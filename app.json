@@ -13,13 +13,15 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.ExpenseTracking"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.ExpenseTracking"
     },
     "web": {
       "bundler": "metro",
@@ -27,10 +29,17 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
-    ],
-    "experiments": {
-      "typedRoutes": true
-    }
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/OutfitBold.ttf",
+            "./assets/fonts/OutfitExtraBold.ttf",
+            "./assets/fonts/OutfitMedium.ttf",
+            "./assets/fonts/OutfitRegular.ttf"
+          ]
+        }
+      ]
+    ]
   }
 }
