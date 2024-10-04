@@ -99,7 +99,7 @@ export function ExpenseForm({
     const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
     const dateIsValid = expenseData.date.toString() !== "Invalid Date";
     const descriptionIsValid = expenseData.description.trim().length > 0;
-    const categoryIsValid = expenseData.category;
+    const categoryIsValid = !!expenseData.category;
 
     if (
       !amountIsValid ||

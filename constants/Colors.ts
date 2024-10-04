@@ -13,7 +13,7 @@ export const Colors = {
     shadow: "#000000",
   },
   light: {
-    background: "#E1E1E1",
+    background: "#e1e1e1",
     header: "#F9FAF9",
     gradientDark: "#EFEFEF",
     gradientLight: "#FFFFFF",

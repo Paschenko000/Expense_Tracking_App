@@ -50,7 +50,7 @@ function ExpensesOverview() {
         tabBarActiveTintColor: colors.accent,
         tabBarBackground: () => (
           <BlurView
-            intensity={80}
+            intensity={30}
             tint={theme}
             style={StyleSheet.absoluteFill}
           />

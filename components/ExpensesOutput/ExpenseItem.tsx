@@ -10,6 +10,7 @@ import { GrayLinearGradient } from "@/ui/GrayLinearGradient";
 import { Colors } from "@/constants/Colors";
 import { getFormattedDate } from "@/utils/date";
 import { IExpense } from "@/modals/expenses.model";
+import { ShadowContainer } from "@/ui/ShadowContainer";
 
 export function ExpenseItem({
   currency,
@@ -30,38 +31,40 @@ export function ExpenseItem({
   }
 
   return (
-    <GrayLinearGradient styles={styles.container}>
-      <Pressable
-        onPress={expensePressHandler}
-        style={({ pressed }) =>
-          pressed && [styles.pressed, { backgroundColor: colors.pressed }]
-        }
-      >
-        <View style={styles.expenseItem}>
-          <View style={styles.textContainer}>
-            <Text style={[styles.amount, { color: category.color }]}>
-              {category.name}
-            </Text>
-            <Text
-              style={[
-                styles.textBase,
-                { paddingBottom: 2, color: colors.text },
-              ]}
-            >
-              {description}
-            </Text>
+    <ShadowContainer color={colors.shadow}>
+      <GrayLinearGradient styles={styles.container}>
+        <Pressable
+          onPress={expensePressHandler}
+          style={({ pressed }) =>
+            pressed && [styles.pressed, { backgroundColor: colors.pressed }]
+          }
+        >
+          <View style={styles.expenseItem}>
+            <View style={styles.textContainer}>
+              <Text style={[styles.amount, { color: category.color }]}>
+                {category.name}
+              </Text>
+              <Text
+                style={[
+                  styles.textBase,
+                  { paddingBottom: 2, color: colors.text },
+                ]}
+              >
+                {description}
+              </Text>
+            </View>
+            <View style={styles.amountContainer}>
+              <Text style={[styles.amount, { color: category.color }]}>
+                {amount.toFixed(2) + currency}
+              </Text>
+              <Text style={[styles.textBase, { color: colors.text }]}>
+                {getFormattedDate(date)}
+              </Text>
+            </View>
           </View>
-          <View style={styles.amountContainer}>
-            <Text style={[styles.amount, { color: category.color }]}>
-              {amount.toFixed(2) + currency}
-            </Text>
-            <Text style={[styles.textBase, { color: colors.text }]}>
-              {getFormattedDate(date)}
-            </Text>
-          </View>
-        </View>
-      </Pressable>
-    </GrayLinearGradient>
+        </Pressable>
+      </GrayLinearGradient>
+    </ShadowContainer>
   );
 }
 

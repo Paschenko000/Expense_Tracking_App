@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import { IExpense } from "@/modals/expenses.model";
 import { GrayLinearGradient } from "@/ui/GrayLinearGradient";
 import { Colors } from "@/constants/Colors";
+import { ShadowContainer } from "@/ui/ShadowContainer";
 
 export function CategoryItem({
   expenses,
@@ -33,26 +34,33 @@ export function CategoryItem({
   }, 0);
 
   return (
-    <GrayLinearGradient styles={styles.container}>
-      <Pressable
-        onPress={categoryPressHandler}
-        style={({ pressed }) =>
-          pressed && [styles.pressed, { backgroundColor: colors.pressed }]
-        }
-      >
-        <View style={styles.expenseCategory}>
-          <Text
-            style={[styles.textBase, { paddingBottom: 4, color: colors.text }]}
-          >
-            {expenses[0].category.name}
-          </Text>
-          <Text style={[styles.amount, { color: expenses[0].category.color }]}>
-            {categorySum.toFixed(2)}
-            {currency}
-          </Text>
-        </View>
-      </Pressable>
-    </GrayLinearGradient>
+    <ShadowContainer color={colors.shadow}>
+      <GrayLinearGradient styles={styles.container}>
+        <Pressable
+          onPress={categoryPressHandler}
+          style={({ pressed }) =>
+            pressed && [styles.pressed, { backgroundColor: colors.pressed }]
+          }
+        >
+          <View style={styles.expenseCategory}>
+            <Text
+              style={[
+                styles.textBase,
+                { paddingBottom: 4, color: colors.text },
+              ]}
+            >
+              {expenses[0].category.name}
+            </Text>
+            <Text
+              style={[styles.amount, { color: expenses[0].category.color }]}
+            >
+              {categorySum.toFixed(2)}
+              {currency}
+            </Text>
+          </View>
+        </Pressable>
+      </GrayLinearGradient>
+    </ShadowContainer>
   );
 }
 
