@@ -1,4 +1,10 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from "react-native";
 
 import { GrayLinearGradient } from "./GrayLinearGradient";
 import { Colors } from "@/constants/Colors";
@@ -18,6 +24,9 @@ export function CategoryBtn({
   onPress,
   selectedCategory,
 }: CategoryBtn) {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   return (
     <GrayLinearGradient styles={styles.button}>
       <Pressable
@@ -28,8 +37,10 @@ export function CategoryBtn({
           style={[
             styles.container,
             selectedCategory &&
-              id === selectedCategory.id &&
-              styles.selectedCategory,
+              id === selectedCategory.id && [
+                styles.selectedCategory,
+                { backgroundColor: colors.pressed },
+              ],
           ]}
         >
           <Text style={[styles.category, { color }]}>{name}</Text>
@@ -58,7 +69,6 @@ const styles = StyleSheet.create({
     minHeight: 55,
   },
   selectedCategory: {
-    backgroundColor: Colors.lightGray,
     borderRadius: 8,
   },
 });

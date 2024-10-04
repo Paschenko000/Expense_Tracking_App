@@ -1,4 +1,4 @@
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Text, useColorScheme, View } from "react-native";
 import { StyleSheet } from "react-native";
 import { ExpenseItem } from "./ExpenseItem";
 import { IExpense } from "@/modals/expenses.model";
@@ -17,6 +17,9 @@ export function ExpensesOutput({
   expensesPeriod,
   fallbackText,
 }: ExpensesOutputProps) {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   const expensesSum = expenses.reduce((sum, expense) => {
     return sum + expense.amount;
   }, 0);
@@ -26,7 +29,9 @@ export function ExpensesOutput({
   }
 
   return (
-    <View style={styles.expensesContainer}>
+    <View
+      style={[styles.expensesContainer, { backgroundColor: colors.background }]}
+    >
       <SummaryContainer
         expensesPeriod={expensesPeriod}
         expensesSum={expensesSum}
@@ -41,7 +46,9 @@ export function ExpensesOutput({
           keyExtractor={(item) => item.id.toString()}
         />
       ) : (
-        <Text style={styles.fallbackText}>{fallbackText}</Text>
+        <Text style={[styles.fallbackText, { color: colors.accent }]}>
+          {fallbackText}
+        </Text>
       )}
     </View>
   );
@@ -49,34 +56,12 @@ export function ExpensesOutput({
 
 const styles = StyleSheet.create({
   expensesContainer: {
-    backgroundColor: Colors.black,
     padding: 10,
     flex: 1,
     flexDirection: "column",
   },
-  summaryContainer: {
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 20,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginHorizontal: 4,
-    marginTop: 4,
-  },
-  summaryPeriod: {
-    fontFamily: "Outfit-Medium",
-    fontSize: 18,
-    color: Colors.white,
-  },
-  sum: {
-    fontFamily: "Outfit-ExtraBold",
-    fontSize: 18,
-    color: Colors.accent,
-  },
   fallbackText: {
     fontFamily: "Outfit-Regular",
-    color: Colors.accent,
     fontSize: 18,
     textAlign: "center",
     marginVertical: "auto",

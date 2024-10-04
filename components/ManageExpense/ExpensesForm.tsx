@@ -1,4 +1,4 @@
-import { FlatList, Text, View, StyleSheet } from "react-native";
+import { FlatList, Text, View, StyleSheet, useColorScheme } from "react-native";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { IExpense } from "@/modals/expenses.model";
@@ -9,7 +9,6 @@ import { Button } from "@/ui/Button";
 import { Colors } from "@/constants/Colors";
 import { TExpenseData } from "@/store/expenses-context";
 import { CategoryBtn } from "@/ui/CategoryBtn";
-import { Categories } from "@/components/Categories/Categories";
 
 type FormProps = {
   currency: string;
@@ -44,6 +43,9 @@ export function ExpenseForm({
   isEditing,
   defaultValues,
 }: FormProps) {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   const navigation = useNavigation();
   const [inputs, setInputs] = useState({
     amount: {
@@ -160,7 +162,9 @@ export function ExpenseForm({
 
   return (
     <View style={styles.form}>
-      <Text style={styles.title}>Type Your Expense</Text>
+      <Text style={[styles.title, { color: colors.text }]}>
+        Type Your Expense
+      </Text>
       <View style={styles.inputsRow}>
         <Input
           label={"Amount (" + currency + ")"}
@@ -195,16 +199,18 @@ export function ExpenseForm({
       />
 
       {formIsInvalid && (
-        <Text style={styles.errorText}>
+        <Text style={[styles.errorText, { color: colors.textError }]}>
           Invalid input values - please check your entered data!
         </Text>
       )}
       <View style={styles.categoriesContainer}>
         <View style={styles.addCategoryContainer}>
-          <Text style={styles.title}>Select Category</Text>
+          <Text style={[styles.title, { color: colors.text }]}>
+            Select Category
+          </Text>
           <IconButton
             icon="add"
-            color={Colors.accent}
+            color={colors.accent}
             size={30}
             onPress={handleNavigate}
           />
@@ -221,14 +227,14 @@ export function ExpenseForm({
       <View style={styles.buttonsContainer}>
         <Button
           mode="flat"
-          color={Colors.accent}
+          color={colors.accent}
           onPress={onCancel}
           style={styles.button}
         >
           Cancel
         </Button>
         <Button
-          color={Colors.accent}
+          color={colors.accent}
           onPress={submitHandler}
           style={styles.button}
         >
@@ -246,7 +252,6 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "Outfit-Bold",
     fontSize: 22,
-    color: Colors.white,
     marginBottom: 20,
   },
   inputsRow: {
@@ -272,7 +277,6 @@ const styles = StyleSheet.create({
   errorText: {
     fontFamily: "Outfit-Regular",
     textAlign: "center",
-    color: Colors.red,
     margin: 8,
     fontSize: 16,
   },

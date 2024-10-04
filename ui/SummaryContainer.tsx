@@ -1,5 +1,5 @@
 import { GrayLinearGradient } from "@/ui/GrayLinearGradient";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, useColorScheme } from "react-native";
 import { Colors } from "@/constants/Colors";
 
 type SummaryProps = {
@@ -12,11 +12,16 @@ export function SummaryContainer({
   expensesSum,
   currency,
 }: SummaryProps) {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { shadowColor: colors.shadow }]}>
       <GrayLinearGradient styles={styles.summaryContainer}>
-        <Text style={styles.summaryPeriod}>{expensesPeriod}</Text>
-        <Text style={styles.sum}>
+        <Text style={[styles.summaryPeriod, { color: colors.text }]}>
+          {expensesPeriod}
+        </Text>
+        <Text style={[styles.sum, { color: colors.accent }]}>
           {expensesSum.toFixed(2)}
           {currency}
         </Text>
@@ -29,7 +34,6 @@ const styles = StyleSheet.create({
   container: {
     elevation: 10,
     zIndex: 10,
-    shadowColor: "#000000",
     shadowOffset: {
       height: 10,
       width: 0,
@@ -50,11 +54,9 @@ const styles = StyleSheet.create({
   summaryPeriod: {
     fontFamily: "Outfit-Medium",
     fontSize: 18,
-    color: Colors.white,
   },
   sum: {
     fontSize: 18,
     fontFamily: "Outfit-ExtraBold",
-    color: Colors.accent,
   },
 });

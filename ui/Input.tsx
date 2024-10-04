@@ -1,4 +1,10 @@
-import { Text, TextInput, TextInputProps, View } from "react-native";
+import {
+  Text,
+  TextInput,
+  TextInputProps,
+  useColorScheme,
+  View,
+} from "react-native";
 import { StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
 
@@ -9,19 +15,30 @@ type InputProps = {
   invalid: boolean;
 };
 export function Input({ label, textInputConfig, style, invalid }: InputProps) {
-  const inputStyles = [styles.input];
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+  const inputStyles = [
+    styles.input,
+    { color: colors.text, backgroundColor: colors.gradientLight },
+  ];
 
   if (textInputConfig && textInputConfig.multiline) {
     inputStyles.push(styles.inputMultiline);
   }
 
   if (invalid) {
-    inputStyles.push(styles.invalidInput);
+    inputStyles.push({ backgroundColor: colors.inputError });
   }
 
   return (
     <View style={[styles.container, style]}>
-      <Text style={[styles.label, invalid && styles.invalidLabel]}>
+      <Text
+        style={[
+          styles.label,
+          { color: colors.text },
+          invalid && { color: colors.textError },
+        ]}
+      >
         {label}
       </Text>
       <TextInput style={inputStyles} {...textInputConfig} />
@@ -37,7 +54,6 @@ const styles = StyleSheet.create({
   label: {
     fontFamily: "Outfit-Regular",
     fontSize: 16,
-    color: Colors.white,
     marginBottom: 7,
     marginLeft: 15,
   },
@@ -46,18 +62,10 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     minHeight: 50,
-    backgroundColor: Colors.gray,
     fontSize: 18,
-    color: Colors.white,
   },
   inputMultiline: {
     textAlignVertical: "top",
     minHeight: 75,
-  },
-  invalidLabel: {
-    color: Colors.red,
-  },
-  invalidInput: {
-    backgroundColor: Colors.error,
   },
 });

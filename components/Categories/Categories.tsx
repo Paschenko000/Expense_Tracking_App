@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, useColorScheme, View } from "react-native";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { CategoryItem } from "./CategoryItem";
 import { IExpense } from "@/modals/expenses.model";
@@ -12,12 +12,15 @@ type ExpensesCategoryProps = {
   expensesPeriod: string;
   fallbackText: string;
 };
+
 export function Categories({
   currency,
   expenses,
   expensesPeriod,
   fallbackText,
 }: ExpensesCategoryProps) {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
   const bottomPadding = useBottomTabBarHeight();
 
   const expensesSum = expenses.reduce((sum, expense) => {
@@ -40,7 +43,9 @@ export function Categories({
   }
 
   return (
-    <View style={[styles.expensesContainer]}>
+    <View
+      style={[styles.expensesContainer, { backgroundColor: colors.background }]}
+    >
       {expenses.length > 0 ? (
         <>
           <SummaryContainer
@@ -60,7 +65,13 @@ export function Categories({
           />
         </>
       ) : (
-        <Text style={[styles.fallbackText, { paddingBottom: bottomPadding }]}>
+        <Text
+          style={[
+            styles.fallbackText,
+            { color: colors.accent },
+            { paddingBottom: bottomPadding },
+          ]}
+        >
           {fallbackText}
         </Text>
       )}
@@ -70,14 +81,12 @@ export function Categories({
 
 const styles = StyleSheet.create({
   expensesContainer: {
-    backgroundColor: Colors.black,
     padding: 10,
     flex: 1,
     flexDirection: "column",
   },
   fallbackText: {
     fontFamily: "Outfit-Regular",
-    color: Colors.accent,
     fontSize: 18,
     textAlign: "center",
     marginVertical: "auto",

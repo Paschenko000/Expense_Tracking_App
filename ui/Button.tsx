@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, useColorScheme, View } from "react-native";
 import { StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
 
@@ -15,6 +15,9 @@ export function Button({
   style,
   color,
 }: ButtonProps & { children: React.ReactNode }) {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   return (
     <View style={style}>
       <Pressable
@@ -28,7 +31,13 @@ export function Button({
             mode === "flat" && styles.flat,
           ]}
         >
-          <Text style={[styles.buttonText, mode === "flat" && { color }]}>
+          <Text
+            style={[
+              styles.buttonText,
+              { color: colors.secondaryText },
+              mode === "flat" && { color },
+            ]}
+          >
             {children}
           </Text>
         </View>
@@ -48,7 +57,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: "Outfit-Regular",
     fontSize: 16,
-    color: Colors.black,
     textAlign: "center",
   },
   pressed: {

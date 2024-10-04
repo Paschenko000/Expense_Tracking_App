@@ -1,4 +1,4 @@
-import { ScrollView, View, StyleSheet } from "react-native";
+import { ScrollView, View, StyleSheet, useColorScheme } from "react-native";
 import { ExpensesContext, TExpenseData } from "@/store/expenses-context";
 import { useContext, useState, useLayoutEffect } from "react";
 import { getItem } from "@/utils/storage";
@@ -14,6 +14,9 @@ export function ManageExpense({
   route,
   navigation,
 }: NativeStackScreenProps<any>) {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [errorState, setErrorState] = useState<string>();
   const [currency, setCurrency] = useState<ICurrency>();
@@ -72,8 +75,8 @@ export function ManageExpense({
   }
 
   return (
-    <ScrollView style={{ backgroundColor: Colors.black }}>
-      <View style={styles.container}>
+    <ScrollView style={{ backgroundColor: colors.background }}>
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
         <ExpenseForm
           currency={currency && currency.code}
           defaultValues={expense}
@@ -83,10 +86,15 @@ export function ManageExpense({
         />
 
         {isEditing && (
-          <View style={styles.deleteContainer}>
+          <View
+            style={[
+              styles.deleteContainer,
+              { borderColor: colors.gradientLight },
+            ]}
+          >
             <Button
               mode="flat"
-              color={Colors.red}
+              color={colors.textError}
               onPress={deleteExpenseHandler}
             >
               Delete
@@ -103,10 +111,8 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     paddingTop: 10,
     borderTopWidth: 1,
-    borderColor: Colors.lightGray,
   },
   container: {
-    backgroundColor: Colors.black,
     flex: 1,
     paddingHorizontal: 10,
   },

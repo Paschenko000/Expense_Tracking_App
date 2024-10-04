@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  StyleSheet,
+  useColorScheme,
+} from "react-native";
 import { GrayLinearGradient } from "./GrayLinearGradient";
 import { Currencies } from "@/constants/Currencies";
 import { Colors } from "@/constants/Colors";
@@ -9,6 +16,9 @@ type SelectProps = {
   setSelectedCurrency: (currency: string) => void;
 };
 export function Select({ selectedCurrency, setSelectedCurrency }: SelectProps) {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleCurrencySelect = (currency: string) => {
@@ -19,10 +29,10 @@ export function Select({ selectedCurrency, setSelectedCurrency }: SelectProps) {
   return (
     <View>
       <TouchableOpacity
-        style={styles.selectButton}
+        style={[styles.selectButton, { backgroundColor: colors.accent }]}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={styles.selectedText}>
+        <Text style={[styles.selectedText, { color: colors.secondaryText }]}>
           Selected Currency: {selectedCurrency}
         </Text>
       </TouchableOpacity>
@@ -35,7 +45,9 @@ export function Select({ selectedCurrency, setSelectedCurrency }: SelectProps) {
       >
         <View style={styles.modalOverlay}>
           <GrayLinearGradient styles={styles.modalContent}>
-            <Text style={styles.modalTitle}>Select Currency</Text>
+            <Text style={[styles.modalTitle, { color: colors.text }]}>
+              Select Currency
+            </Text>
             {Currencies.map((currency) => (
               <>
                 <TouchableOpacity
@@ -43,7 +55,9 @@ export function Select({ selectedCurrency, setSelectedCurrency }: SelectProps) {
                   style={styles.currencyOption}
                   onPress={() => handleCurrencySelect(currency.code)}
                 >
-                  <Text style={styles.currencyText}>{currency.label}</Text>
+                  <Text style={[styles.currencyText, { color: colors.text }]}>
+                    {currency.label}
+                  </Text>
                 </TouchableOpacity>
               </>
             ))}
@@ -51,7 +65,9 @@ export function Select({ selectedCurrency, setSelectedCurrency }: SelectProps) {
               style={styles.closeButton}
               onPress={() => setModalVisible(false)}
             >
-              <Text style={styles.closeText}>Close</Text>
+              <Text style={[styles.closeText, { color: colors.accent }]}>
+                Close
+              </Text>
             </TouchableOpacity>
           </GrayLinearGradient>
         </View>
@@ -62,7 +78,6 @@ export function Select({ selectedCurrency, setSelectedCurrency }: SelectProps) {
 
 const styles = StyleSheet.create({
   selectButton: {
-    backgroundColor: Colors.accent,
     padding: 10,
     borderRadius: 8,
     alignItems: "center",
@@ -73,7 +88,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   selectedText: {
-    color: Colors.black,
     fontSize: 16,
     fontFamily: "Outfit-Medium",
   },
@@ -89,7 +103,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   modalTitle: {
-    color: Colors.white,
     fontSize: 20,
     marginBottom: 15,
     fontFamily: "Outfit-Bold",
@@ -102,7 +115,6 @@ const styles = StyleSheet.create({
   currencyText: {
     fontFamily: "Outfit-Medium",
     fontSize: 16,
-    color: Colors.white,
   },
   closeButton: {
     marginVertical: 15,
@@ -111,6 +123,5 @@ const styles = StyleSheet.create({
   closeText: {
     fontFamily: "Outfit-Regular",
     fontSize: 16,
-    color: Colors.accent,
   },
 });

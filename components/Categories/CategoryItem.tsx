@@ -1,4 +1,10 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { IExpense } from "@/modals/expenses.model";
 import { GrayLinearGradient } from "@/ui/GrayLinearGradient";
@@ -11,6 +17,8 @@ export function CategoryItem({
   expenses: IExpense[];
   currency: string;
 }) {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
   const navigation = useNavigation();
 
   function categoryPressHandler() {
@@ -28,10 +36,14 @@ export function CategoryItem({
     <GrayLinearGradient styles={styles.container}>
       <Pressable
         onPress={categoryPressHandler}
-        style={({ pressed }) => pressed && styles.pressed}
+        style={({ pressed }) =>
+          pressed && [styles.pressed, { backgroundColor: colors.pressed }]
+        }
       >
         <View style={styles.expenseCategory}>
-          <Text style={[styles.textBase, { paddingBottom: 4 }]}>
+          <Text
+            style={[styles.textBase, { paddingBottom: 4, color: colors.text }]}
+          >
             {expenses[0].category.name}
           </Text>
           <Text style={[styles.amount, { color: expenses[0].category.color }]}>
@@ -46,7 +58,6 @@ export function CategoryItem({
 
 const styles = StyleSheet.create({
   pressed: {
-    backgroundColor: Colors.lightGray,
     borderRadius: 16,
   },
   container: {
@@ -63,7 +74,6 @@ const styles = StyleSheet.create({
   textBase: {
     fontFamily: "Outfit-Regular",
     fontSize: 16,
-    color: Colors.white,
     alignItems: "flex-start",
   },
   amount: {

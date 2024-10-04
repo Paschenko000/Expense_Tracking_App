@@ -1,4 +1,10 @@
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Pressable,
+  useColorScheme,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { IExpense } from "@/modals/expenses.model";
 import { formatDate } from "@/utils/date";
@@ -11,6 +17,9 @@ type DailyExpensesProps = {
   currency: string;
 };
 export function DailyExpense({ expenses, day, currency }: DailyExpensesProps) {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   const navigation = useNavigation();
 
   const expensesSum = expenses.reduce((sum, expense) => {
@@ -26,8 +35,10 @@ export function DailyExpense({ expenses, day, currency }: DailyExpensesProps) {
   return (
     <View style={styles.container}>
       <View style={styles.headingContainer}>
-        <Text style={styles.date}>{date}</Text>
-        <Text style={styles.sum}>{expensesSum + currency}</Text>
+        <Text style={[styles.date, { color: colors.text }]}>{date}</Text>
+        <Text style={[styles.sum, { color: colors.accent }]}>
+          {expensesSum + currency}
+        </Text>
       </View>
 
       <GrayLinearGradient styles={styles.expensesContainer}>
@@ -35,7 +46,9 @@ export function DailyExpense({ expenses, day, currency }: DailyExpensesProps) {
           <Pressable
             onPress={() => expensePressHandler(expense)}
             key={expense.id}
-            style={({ pressed }) => pressed && styles.pressed}
+            style={({ pressed }) =>
+              pressed && [styles.pressed, { backgroundColor: colors.pressed }]
+            }
           >
             <View style={styles.expenseButton}>
               <View style={styles.textContainer}>
@@ -47,7 +60,9 @@ export function DailyExpense({ expenses, day, currency }: DailyExpensesProps) {
                 >
                   {expense.category.name}
                 </Text>
-                <Text style={styles.description}>{expense.description}</Text>
+                <Text style={[styles.description, { color: colors.text }]}>
+                  {expense.description}
+                </Text>
               </View>
               <Text
                 style={[
@@ -67,7 +82,6 @@ export function DailyExpense({ expenses, day, currency }: DailyExpensesProps) {
 
 const styles = StyleSheet.create({
   pressed: {
-    backgroundColor: Colors.lightGray,
     borderRadius: 16,
   },
   container: {
@@ -82,11 +96,9 @@ const styles = StyleSheet.create({
   },
   date: {
     fontFamily: "Outfit-Medium",
-    color: Colors.white,
     fontSize: 18,
   },
   sum: {
-    color: Colors.accent,
     fontFamily: "Outfit-Bold",
     fontSize: 18,
   },
@@ -107,7 +119,6 @@ const styles = StyleSheet.create({
   description: {
     fontFamily: "Outfit-Regular",
     fontSize: 16,
-    color: Colors.white,
     alignItems: "flex-start",
   },
   textContainer: {

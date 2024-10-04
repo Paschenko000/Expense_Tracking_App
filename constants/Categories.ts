@@ -1,4 +1,3 @@
-import { Colors } from "@/constants/Colors";
 export interface ICategory {
   id: number;
   name: string;
@@ -9,91 +8,91 @@ export const CategoriesData: ICategory[] = [
   {
     id: 1,
     name: "Housing",
-    color: Colors.darkBlue,
+    color: "#0059e5",
   },
   {
     id: 2,
     name: "Transportation",
-    color: Colors.blue,
+    color: "#1e9fff",
   },
   {
     id: 3,
     name: "Groceries",
-    color: Colors.lightBlue,
+    color: "#51B3F8",
   },
   {
     id: 4,
     name: "Health & Fitness",
-    color: Colors.azure,
+    color: "#6CEACA",
   },
   {
     id: 5,
     name: "Insurance",
-    color: Colors.darkGreen,
+    color: "#60D158",
   },
   {
     id: 6,
     name: "Entertainment",
-    color: Colors.green,
+    color: "#87cb07",
   },
   {
     id: 7,
     name: "Personal Care",
-    color: Colors.yellow,
+    color: "#F6E653",
   },
   {
     id: 8,
     name: "Taxes",
-    color: Colors.darkYellow,
+    color: "#ffcd00",
   },
   {
     id: 9,
     name: "Debt & Loans",
-    color: Colors.beige,
+    color: "#f39d5e",
   },
   {
     id: 10,
     name: "Savings & Investments",
-    color: Colors.orange,
+    color: "#EE8246",
   },
   {
     id: 11,
     name: "Travel",
-    color: Colors.mandarin,
+    color: "#ED6C59",
   },
   {
     id: 12,
     name: "Pets",
-    color: Colors.brightRed,
+    color: "#E13552",
   },
   {
     id: 13,
     name: "Childcare & Education",
-    color: Colors.red,
+    color: "#ec183e",
   },
   {
     id: 14,
     name: "Subscriptions & Memberships",
-    color: Colors.brightPink,
+    color: "#EA4376",
   },
   {
     id: 15,
     name: "Dining Out",
-    color: Colors.pink,
+    color: "#D08FDB",
   },
   {
     id: 17,
     name: "Equipment & Gear",
-    color: Colors.lightPurple,
+    color: "#bdacf6",
   },
   {
     id: 18,
     name: "Unhealthy & Habits",
-    color: Colors.purple,
+    color: "#A78FE8",
   },
   {
     id: 16,
     name: "Other",
-    color: Colors.darkPurple,
+    color: "#7e5fd9",
   },
 ];

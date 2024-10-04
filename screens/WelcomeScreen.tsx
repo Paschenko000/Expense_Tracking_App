@@ -6,6 +6,7 @@ import {
   Linking,
   Pressable,
   TouchableOpacity,
+  useColorScheme,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
@@ -16,6 +17,9 @@ import { Currencies } from "@/constants/Currencies";
 import { Select } from "@/ui/Select";
 
 export function WelcomeScreen() {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
   const navigation = useNavigation();
   const CURRENCY = "CURRENCY";
@@ -30,12 +34,16 @@ export function WelcomeScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.safeContainer}>
+    <SafeAreaView
+      style={[styles.safeContainer, { backgroundColor: colors.background }]}
+    >
       <View style={styles.container}>
         <View style={styles.mainContainer}>
           <View style={styles.textContainer}>
-            <Text style={styles.heading}>Welcome to Expense Tracker!</Text>
-            <Text style={styles.paragraph}>
+            <Text style={[styles.heading, { color: colors.accent }]}>
+              Welcome to Expense Tracker!
+            </Text>
+            <Text style={[styles.paragraph, { color: colors.text }]}>
               Manage your personal expenses effortlessly with this simple and
               intuitive app. Track your spending in selected currency, set
               categories.
@@ -52,11 +60,13 @@ export function WelcomeScreen() {
               style={({ pressed }) => pressed && styles.pressed}
             >
               <View style={styles.button}>
-                <Text style={styles.buttonText}>Continue</Text>
+                <Text style={[styles.buttonText, { color: colors.accent }]}>
+                  Continue
+                </Text>
                 <Ionicons
                   name="arrow-forward-outline"
                   size={20}
-                  color={Colors.accent}
+                  color={colors.accent}
                 />
               </View>
             </Pressable>
@@ -64,13 +74,13 @@ export function WelcomeScreen() {
         </View>
 
         <View style={styles.aboutContainer}>
-          <Text style={styles.about}>
+          <Text style={[styles.about, { color: colors.text }]}>
             This app is a portfolio project built to showcase my skills in
             mobile app development using React Native.
           </Text>
 
           <TouchableOpacity onPress={handleLinkPress}>
-            <Text style={styles.link}>
+            <Text style={[styles.link, { color: colors.accent }]}>
               GitHub: https://github.com/Paschenko000
             </Text>
           </TouchableOpacity>
@@ -83,7 +93,6 @@ export function WelcomeScreen() {
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    backgroundColor: Colors.black,
   },
   container: {
     flex: 1,
@@ -97,24 +106,20 @@ const styles = StyleSheet.create({
   heading: {
     fontFamily: "Outfit-ExtraBold",
     fontSize: 24,
-    color: Colors.accent,
     textAlign: "center",
   },
   paragraph: {
     fontFamily: "Outfit-Regular",
     fontSize: 20,
-    color: Colors.white,
     textAlign: "center",
   },
   about: {
     fontFamily: "Outfit-Regular",
     fontSize: 16,
-    color: Colors.white,
   },
   link: {
     fontFamily: "Outfit-Bold",
     fontSize: 16,
-    color: Colors.accent,
     fontWeight: "bold",
   },
   currencyContainer: {
@@ -140,6 +145,5 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: "Outfit-Regular",
     fontSize: 16,
-    color: Colors.accent,
   },
 });

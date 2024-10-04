@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
-import { StyleSheet } from "react-native";
+import { StyleSheet, useColorScheme } from "react-native";
 import { useEffect, useState } from "react";
 import { Colors } from "@/constants/Colors";
 import { IconButton } from "@/ui/IconBtn";
@@ -21,11 +21,14 @@ const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 function ExpensesOverview() {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   return (
     <BottomTabs.Navigator
       screenOptions={({ navigation }) => ({
         headerStyle: {
-          backgroundColor: Colors.gray,
+          backgroundColor: colors.header,
           shadowColor: "transparent",
         },
         headerTitleStyle: {
@@ -35,20 +38,20 @@ function ExpensesOverview() {
           <IconButton
             icon="add"
             size={30}
-            color={Colors.accent}
+            color={colors.accent}
             onPress={() => navigation.navigate("ManageExpense")}
           />
         ),
-        headerTintColor: Colors.white,
+        headerTintColor: colors.text,
         tabBarStyle: {
           position: "absolute",
           borderTopWidth: 0,
         },
-        tabBarActiveTintColor: Colors.accent,
+        tabBarActiveTintColor: colors.accent,
         tabBarBackground: () => (
           <BlurView
             intensity={80}
-            tint="dark"
+            tint={theme}
             style={StyleSheet.absoluteFill}
           />
         ),
@@ -84,6 +87,9 @@ function ExpensesOverview() {
 }
 
 export default function RootLayout() {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   const [hasLaunched, setHasLaunched] = useState(false);
   const HAS_LAUNCHED = "HAS_LAUNCHED";
   const CATEGORIES = "CATEGORIES";
@@ -114,13 +120,13 @@ export default function RootLayout() {
           <Stack.Navigator
             screenOptions={{
               headerStyle: {
-                backgroundColor: Colors.gray,
+                backgroundColor: colors.header,
                 shadowColor: "transparent",
               },
-              headerTintColor: Colors.accent,
+              headerTintColor: colors.accent,
               headerTitleStyle: {
                 fontFamily: "Outfit-Medium",
-                color: Colors.white,
+                color: colors.text,
               },
             }}
           >

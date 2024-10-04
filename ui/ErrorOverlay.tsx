@@ -1,11 +1,16 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, useColorScheme } from "react-native";
 import { Colors } from "@/constants/Colors";
 
 export function ErrorOverlay({ message }: { message: string }) {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <Text style={[styles.text, styles.title]}>An error occurred!</Text>
-      <Text style={[styles.text, styles.message]}>{message}</Text>
+      <Text style={[styles.text, styles.message, { color: colors.inputError }]}>
+        {message}
+      </Text>
     </View>
   );
 }
@@ -15,7 +20,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Colors.black,
   },
   text: {
     textAlign: "center",
@@ -27,6 +31,5 @@ const styles = StyleSheet.create({
   },
   message: {
     fontSize: 16,
-    color: Colors.error,
   },
 });

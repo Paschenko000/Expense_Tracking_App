@@ -1,9 +1,16 @@
-import { ActivityIndicator, View, StyleSheet } from "react-native";
+import {
+  ActivityIndicator,
+  View,
+  StyleSheet,
+  useColorScheme,
+} from "react-native";
 import { Colors } from "@/constants/Colors";
-
 export function LoadingOverlay() {
+  const theme = useColorScheme();
+  const colors = theme === "dark" ? Colors.dark : Colors.light;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <ActivityIndicator size="small" color="white" />
     </View>
   );
@@ -14,6 +21,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Colors.black,
   },
 });
