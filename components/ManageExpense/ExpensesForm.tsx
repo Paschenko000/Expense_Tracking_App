@@ -45,7 +45,7 @@ export function ExpenseForm({
 }: FormProps) {
   const theme = useColorScheme();
   const colors = theme === "dark" ? Colors.dark : Colors.light;
-
+  const today = new Date();
   const navigation = useNavigation();
   const [inputs, setInputs] = useState({
     amount: {
@@ -54,7 +54,7 @@ export function ExpenseForm({
     },
     date: {
       value: defaultValues
-        ? new Date(defaultValues.date).toISOString().slice(0, 10)
+        ? console.log(new Date(defaultValues.date).toISOString().slice(0, 10))
         : "",
       isValid: true,
     },
@@ -63,7 +63,7 @@ export function ExpenseForm({
       isValid: true,
     },
     category: {
-      value: defaultValues ? { ...defaultValues.category } : null,
+      value: defaultValues ? { ...defaultValues.category } : "",
       isValid: true,
     },
   });
@@ -96,10 +96,19 @@ export function ExpenseForm({
       },
     };
 
+    // TODO: fix date validation
+
+    const date = new Date(expenseData.date);
     const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
-    const dateIsValid = expenseData.date.toString() !== "Invalid Date";
+    const dateIsValid =
+      date.toString() !== "Invalid Date" ||
+      (date.getFullYear() < today.getFullYear() &&
+        date.getMonth() < today.getMonth() &&
+        date.getDay() < today.getDay() + 1);
     const descriptionIsValid = expenseData.description.trim().length > 0;
     const categoryIsValid = !!expenseData.category;
+
+    console.log(dateIsValid, "is valid", date, "date");
 
     if (
       !amountIsValid ||
