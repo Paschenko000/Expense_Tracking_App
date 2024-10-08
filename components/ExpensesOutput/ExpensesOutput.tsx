@@ -1,31 +1,37 @@
-import { FlatList, Text, useColorScheme, View } from "react-native";
-import { StyleSheet } from "react-native";
-import { ExpenseItem } from "./ExpenseItem";
-import { IExpense } from "@/modals/expenses.model";
+import { View, StyleSheet, Text, FlatList, useColorScheme } from "react-native";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import { IDailyExpenses } from "@/modals/expenses.model";
 import { SummaryContainer } from "@/ui/SummaryContainer";
+import {
+  DailyExpense,
+  ExpenseItem,
+} from "@/components/ExpensesOutput/ExpenseItem";
 import { Colors } from "@/constants/Colors";
 
-type ExpensesOutputProps = {
+type MonthlyExpensesProps = {
   currency: string;
-  expenses: IExpense[];
-  expensesPeriod: string;
+  expenses: IDailyExpenses[];
   fallbackText: string;
+  bottomPadding: number;
 };
 export function ExpensesOutput({
   currency,
   expenses,
-  expensesPeriod,
   fallbackText,
-}: ExpensesOutputProps) {
+  bottomPadding,
+}: MonthlyExpensesProps) {
   const theme = useColorScheme();
   const colors = theme === "dark" ? Colors.dark : Colors.light;
 
-  const expensesSum = expenses.reduce((sum, expense) => {
-    return sum + expense.amount;
-  }, 0);
+  let sum = 0;
+  expenses.forEach((date) => {
+    sum += date.expenses.reduce((sum, expense) => {
+      return sum + expense.amount;
+    }, 0);
+  });
 
-  function renderExpense(itemData) {
-    return <ExpenseItem currency={currency} {...itemData.item} />;
+  function renderExpense(itemsData) {
+    return <ExpenseItem currency={currency} {...itemsData.item} />;
   }
 
   return (
@@ -33,17 +39,21 @@ export function ExpensesOutput({
       style={[styles.expensesContainer, { backgroundColor: colors.background }]}
     >
       <SummaryContainer
-        expensesPeriod={expensesPeriod}
-        expensesSum={expensesSum}
+        expensesPeriod="This Month"
+        expensesSum={sum}
         currency={currency}
       />
 
       {expenses.length > 0 ? (
         <FlatList
-          contentContainerStyle={{ marginHorizontal: 4, marginTop: 10 }}
+          contentContainerStyle={{
+            paddingBottom: bottomPadding,
+            marginHorizontal: 4,
+            marginTop: 20,
+          }}
           data={expenses}
           renderItem={renderExpense}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.day}
         />
       ) : (
         <Text style={[styles.fallbackText, { color: colors.accent }]}>

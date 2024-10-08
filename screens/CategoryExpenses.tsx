@@ -2,6 +2,7 @@ import { useContext, useLayoutEffect } from "react";
 import { ExpensesContext } from "@/store/expenses-context";
 import { ExpensesOutput } from "@/components/ExpensesOutput/ExpensesOutput";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { sortExpenses } from "@/utils/date";
 
 export function CategoryExpenses({
   route,
@@ -16,6 +17,8 @@ export function CategoryExpenses({
     (expense) => expense.category.id === expenses[0].category.id,
   );
 
+  const sortedExpenses = sortExpenses(expensesCat);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: expenses[0].category.name,
@@ -24,9 +27,9 @@ export function CategoryExpenses({
 
   return (
     <ExpensesOutput
+      bottomPadding={0}
       currency={currency}
-      expensesPeriod="Total"
-      expenses={expensesCat}
+      expenses={sortedExpenses}
       fallbackText="No registered expenses found"
     />
   );
