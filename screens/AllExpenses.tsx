@@ -24,6 +24,8 @@ export function AllExpenses() {
     return <ErrorOverlay message={errorState} />;
   }
 
+  const expenses = sortExpenses(expensesCtx.expenses);
+  console.log(expenses);
   return (
     <Categories
       currency={currency && currency.sign}

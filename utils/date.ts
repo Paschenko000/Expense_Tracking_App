@@ -102,5 +102,10 @@ export function sortExpenses(expenses: IExpense[]) {
     return acc;
   }, {});
   const sortedExpenses: IDailyExpenses[] = Object.values(sortedExpensesObj);
+  sortedExpenses.sort((a, b) => {
+    const dateA = new Date(a.day);
+    const dateB = new Date(b.day);
+    return dateB.getTime() - dateA.getTime();
+  });
   return sortedExpenses;
 }
