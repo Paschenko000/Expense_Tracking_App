@@ -60,3 +60,47 @@ export function formatDate(date: string | Date) {
     month: "long",
   });
 }
+
+export function validateDate(inputDate: string) {
+  const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+  if (!datePattern.test(inputDate)) {
+    return false;
+  }
+
+  const parsedDate = new Date(inputDate);
+  if (isNaN(parsedDate.getTime())) {
+    return false;
+  }
+
+  const [inputYear, inputMonth, inputDay] = inputDate.split("-").map(Number);
+
+  if (
+    parsedDate.getFullYear() !== inputYear ||
+    parsedDate.getMonth() + 1 !== inputMonth ||
+    parsedDate.getDate() !== inputDay
+  ) {
+    return false;
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  if (parsedDate > today) {
+    return false;
+  }
+
+  return true;
+}
+
+export function sortExpenses(expenses: IExpense[]) {
+  const sortedExpensesObj = expenses.reduce((acc, el) => {
+    const dataKey = el.date;
+    if (!acc[dataKey]) {
+      acc[dataKey] = { day: dataKey, expenses: [] };
+    }
+    acc[dataKey].expenses.push(el);
+    return acc;
+  }, {});
+  const sortedExpenses: IDailyExpenses[] = Object.values(sortedExpensesObj);
+  return sortedExpenses;
+}

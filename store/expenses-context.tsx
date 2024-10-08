@@ -42,12 +42,12 @@ const expensesReducer: Reducer<IExpense[], IExpensesReducerAction> = (
       const expensesAdd = [{ ...action.payload, id }, ...state];
       storeData("EXPENSES", expensesAdd);
       return expensesAdd;
+    case "SET":
+      return action.payload;
     case "UPDATE":
       const itemIToUpdate = state.findIndex(
         (expense) => expense.id === action.payload.id,
       );
-    case "SET":
-      return action.payload;
       const itemToUpdate = state[itemIToUpdate];
       const updatedItem = { ...itemToUpdate, ...action.payload.data };
       const updatedExpenses = [...state];

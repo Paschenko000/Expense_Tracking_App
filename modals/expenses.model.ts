@@ -1,16 +1,13 @@
+import { ICategory } from "@/constants/Categories";
 export interface IExpense {
   id: number;
   description: string;
   date: string;
   amount: number;
-  category: {
-    id: number;
-    name: string;
-    color: string;
-  };
+  category: ICategory;
 }
 
 export interface IDailyExpenses {
-  day: Date;
+  day: string;
   expenses: IExpense[];
 }

@@ -9,6 +9,7 @@ import { Button } from "@/ui/Button";
 import { Colors } from "@/constants/Colors";
 import { TExpenseData } from "@/store/expenses-context";
 import { CategoryBtn } from "@/ui/CategoryBtn";
+import { validateDate } from "@/utils/date";
 
 type FormProps = {
   currency: string;
@@ -24,7 +25,7 @@ type InputsType = {
     isValid: boolean;
   };
   date: {
-    value: Date | string;
+    value: string;
     isValid: boolean;
   };
   description: {
@@ -45,7 +46,6 @@ export function ExpenseForm({
 }: FormProps) {
   const theme = useColorScheme();
   const colors = theme === "dark" ? Colors.dark : Colors.light;
-  const today = new Date();
   const navigation = useNavigation();
   const [inputs, setInputs] = useState({
     amount: {
@@ -54,7 +54,7 @@ export function ExpenseForm({
     },
     date: {
       value: defaultValues
-        ? console.log(new Date(defaultValues.date).toISOString().slice(0, 10))
+        ? new Date(defaultValues.date).toISOString().slice(0, 10)
         : "",
       isValid: true,
     },
@@ -96,19 +96,10 @@ export function ExpenseForm({
       },
     };
 
-    // TODO: fix date validation
-
-    const date = new Date(expenseData.date);
     const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
-    const dateIsValid =
-      date.toString() !== "Invalid Date" ||
-      (date.getFullYear() < today.getFullYear() &&
-        date.getMonth() < today.getMonth() &&
-        date.getDay() < today.getDay() + 1);
+    const dateIsValid = validateDate(expenseData.date);
     const descriptionIsValid = expenseData.description.trim().length > 0;
-    const categoryIsValid = !!expenseData.category;
-
-    console.log(dateIsValid, "is valid", date, "date");
+    const categoryIsValid = !!expenseData.category.id;
 
     if (
       !amountIsValid ||
@@ -127,7 +118,7 @@ export function ExpenseForm({
           category: {
             value: {
               id: curInputs.category.value.id,
-              name: curInputs.category.value.id,
+              name: curInputs.category.value.name,
               color: curInputs.category.value.color,
             },
             isValid: categoryIsValid,
@@ -166,8 +157,8 @@ export function ExpenseForm({
   const formIsInvalid =
     !inputs.amount.isValid ||
     !inputs.date.isValid ||
-    !inputs.description.isValid ||
-    !inputs.category.isValid;
+    !inputs.description.isValid;
+  // !inputs.category.isValid;
 
   return (
     <View style={styles.form}>
@@ -224,6 +215,11 @@ export function ExpenseForm({
             onPress={handleNavigate}
           />
         </View>
+        {!inputs.category.isValid && (
+          <Text style={[styles.errorText, { color: colors.textError }]}>
+            Please select category!
+          </Text>
+        )}
         <FlatList
           data={CategoriesData}
           renderItem={renderCategory}

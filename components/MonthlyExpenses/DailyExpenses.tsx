@@ -30,7 +30,7 @@ export function DailyExpense({ expenses, day, currency }: DailyExpensesProps) {
   const date = formatDate(day);
 
   function expensePressHandler(expense) {
-    navigation.navigate("ManageExpense", { expenseId: expense });
+    navigation.navigate("ManageExpense", { expense: expense });
   }
 
   return (
@@ -41,43 +41,42 @@ export function DailyExpense({ expenses, day, currency }: DailyExpensesProps) {
           {expensesSum + currency}
         </Text>
       </View>
-      <ShadowContainer color={colors.shadow}>
-        <GrayLinearGradient styles={styles.expensesContainer}>
-          {expenses.map((expense) => (
-            <Pressable
-              onPress={() => expensePressHandler(expense)}
-              key={expense.id}
-              style={({ pressed }) =>
-                pressed && [styles.pressed, { backgroundColor: colors.pressed }]
-              }
-            >
-              <View style={styles.expenseButton}>
-                <View style={styles.textContainer}>
-                  <Text
-                    style={[
-                      styles.expenseCategory,
-                      { color: expense.category.color },
-                    ]}
-                  >
-                    {expense.category.name}
-                  </Text>
-                  <Text style={[styles.description, { color: colors.text }]}>
-                    {expense.description}
-                  </Text>
-                </View>
+
+      <GrayLinearGradient styles={styles.expensesContainer}>
+        {expenses.map((expense) => (
+          <Pressable
+            onPress={() => expensePressHandler(expense)}
+            key={expense.id}
+            style={({ pressed }) =>
+              pressed && [styles.pressed, { backgroundColor: colors.pressed }]
+            }
+          >
+            <View style={styles.expenseButton}>
+              <View style={styles.textContainer}>
                 <Text
                   style={[
                     styles.expenseCategory,
                     { color: expense.category.color },
                   ]}
                 >
-                  {expense.amount + currency}
+                  {expense.category.name}
+                </Text>
+                <Text style={[styles.description, { color: colors.text }]}>
+                  {expense.description}
                 </Text>
               </View>
-            </Pressable>
-          ))}
-        </GrayLinearGradient>
-      </ShadowContainer>
+              <Text
+                style={[
+                  styles.expenseCategory,
+                  { color: expense.category.color },
+                ]}
+              >
+                {expense.amount + currency}
+              </Text>
+            </View>
+          </Pressable>
+        ))}
+      </GrayLinearGradient>
     </View>
   );
 }

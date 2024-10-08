@@ -26,11 +26,11 @@ export function CategoryBtn({
 }: CategoryBtn) {
   const theme = useColorScheme();
   const colors = theme === "dark" ? Colors.dark : Colors.light;
-
+  // console.log(name, "Category button");
   return (
     <GrayLinearGradient styles={styles.button}>
       <Pressable
-        onPress={() => onPress({ id, color, name })}
+        onPress={() => onPress({ id: id, color: color, name: name })}
         style={({ pressed }) => pressed && styles.pressed}
       >
         <View

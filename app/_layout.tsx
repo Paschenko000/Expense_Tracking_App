@@ -16,6 +16,7 @@ import { ExpensesContextProvider } from "@/store/expenses-context";
 import { WelcomeScreen } from "@/screens/WelcomeScreen";
 import { ManageExpense } from "@/screens/ManageExpense";
 import { CategoryExpenses } from "@/screens/CategoryExpenses";
+import { Dashboard } from "@/screens/Dashboard";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
