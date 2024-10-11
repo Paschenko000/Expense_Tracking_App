@@ -150,15 +150,10 @@ export function ExpenseForm({
     );
   }
 
-  function handleNavigate() {
-    navigation.navigate("AddCategory");
-  }
-
   const formIsInvalid =
     !inputs.amount.isValid ||
     !inputs.date.isValid ||
     !inputs.description.isValid;
-  // !inputs.category.isValid;
 
   return (
     <View style={styles.form}>
@@ -204,17 +199,10 @@ export function ExpenseForm({
         </Text>
       )}
       <View style={styles.categoriesContainer}>
-        <View style={styles.addCategoryContainer}>
-          <Text style={[styles.title, { color: colors.text }]}>
-            Select Category
-          </Text>
-          <IconButton
-            icon="add"
-            color={colors.accent}
-            size={30}
-            onPress={handleNavigate}
-          />
-        </View>
+        <Text style={[styles.title, { color: colors.text }]}>
+          Select Category
+        </Text>
+
         {!inputs.category.isValid && (
           <Text style={[styles.errorText, { color: colors.textError }]}>
             Please select category!
@@ -284,9 +272,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 8,
     fontSize: 16,
-  },
-  addCategoryContainer: {
-    flexDirection: "row",
-    gap: 10,
   },
 });

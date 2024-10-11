@@ -16,7 +16,6 @@ import { ExpensesContextProvider } from "@/store/expenses-context";
 import { WelcomeScreen } from "@/screens/WelcomeScreen";
 import { ManageExpense } from "@/screens/ManageExpense";
 import { CategoryExpenses } from "@/screens/CategoryExpenses";
-import { Dashboard } from "@/screens/Dashboard";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -165,15 +164,6 @@ export default function RootLayout() {
                 headerBackTitleStyle: { fontFamily: "Outfit-Medium" },
               }}
             />
-            {/*<Stack.Screen*/}
-            {/*  name="AddCategory"*/}
-            {/*  component={AddCategoryScreen}*/}
-            {/*  options={{*/}
-            {/*    headerTitle: "Add Category",*/}
-            {/*    headerBackTitle: "Back",*/}
-            {/*    headerBackTitleStyle: { fontFamily: "Outfit-Medium" },*/}
-            {/*  }}*/}
-            {/*/>*/}
           </Stack.Navigator>
         </NavigationContainer>
       </ExpensesContextProvider>

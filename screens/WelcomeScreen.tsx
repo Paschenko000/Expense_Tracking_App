@@ -45,8 +45,10 @@ export function WelcomeScreen() {
             </Text>
             <Text style={[styles.paragraph, { color: colors.text }]}>
               Manage your personal expenses effortlessly with this simple and
-              intuitive app. Track your spending in selected currency, set
-              categories.
+              intuitive app. Track your spending in your selected currency, set
+              categories, and enjoy a seamless experience. The app also adapts
+              to your device’s theme, offering both light and dark modes for
+              your convenience.
             </Text>
           </View>
           <View style={styles.currencyContainer}>
@@ -65,7 +67,7 @@ export function WelcomeScreen() {
                 </Text>
                 <Ionicons
                   name="arrow-forward-outline"
-                  size={20}
+                  size={18}
                   color={colors.accent}
                 />
               </View>
@@ -75,8 +77,8 @@ export function WelcomeScreen() {
 
         <View style={styles.aboutContainer}>
           <Text style={[styles.about, { color: colors.text }]}>
-            This app is a portfolio project built to showcase my skills in
-            mobile app development using React Native.
+            This app is a portfolio project built to showcase skills in mobile
+            app development using React Native.
           </Text>
 
           <TouchableOpacity onPress={handleLinkPress}>
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   currencyContainer: {
-    gap: 20,
+    gap: 10,
     justifyContent: "center",
   },
   aboutContainer: {

@@ -10,6 +10,7 @@ import {
 import { GrayLinearGradient } from "./GrayLinearGradient";
 import { Currencies } from "@/constants/Currencies";
 import { Colors } from "@/constants/Colors";
+import { Button } from "@/ui/Button";
 
 type SelectProps = {
   selectedCurrency: string;
@@ -28,14 +29,13 @@ export function Select({ selectedCurrency, setSelectedCurrency }: SelectProps) {
 
   return (
     <View>
-      <TouchableOpacity
-        style={[styles.selectButton, { backgroundColor: colors.accent }]}
+      <Button
+        style={{ alignItems: "center" }}
         onPress={() => setModalVisible(true)}
+        color={colors.accent}
       >
-        <Text style={[styles.selectedText, { color: colors.secondaryText }]}>
-          Selected Currency: {selectedCurrency}
-        </Text>
-      </TouchableOpacity>
+        Selected Currency: {selectedCurrency}
+      </Button>
 
       <Modal
         animationType="slide"
@@ -77,20 +77,6 @@ export function Select({ selectedCurrency, setSelectedCurrency }: SelectProps) {
 }
 
 const styles = StyleSheet.create({
-  selectButton: {
-    padding: 10,
-    borderRadius: 8,
-    alignItems: "center",
-    minHeight: 50,
-    justifyContent: "center",
-    marginVertical: 10,
-    minWidth: 200,
-    alignContent: "center",
-  },
-  selectedText: {
-    fontSize: 16,
-    fontFamily: "Outfit-Medium",
-  },
   modalOverlay: {
     flex: 1,
     justifyContent: "flex-end",
