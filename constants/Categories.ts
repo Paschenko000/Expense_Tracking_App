@@ -87,7 +87,7 @@ export const CategoriesData: ICategory[] = [
   },
   {
     id: 18,
-    name: "Unhealthy & Habits",
+    name: "Unhealthy Habits",
     color: "#A78FE8",
   },
   {

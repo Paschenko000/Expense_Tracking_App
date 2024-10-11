@@ -7,7 +7,11 @@ import {
   Text,
 } from "react-native";
 import { Colors } from "@/constants/Colors";
-export function FilterContainer() {
+
+type FilterContainerProps = {
+  heading: string;
+};
+export function FilterContainer({ heading }: FilterContainerProps) {
   const theme = useColorScheme();
   const colors = theme === "dark" ? Colors.dark : Colors.light;
   const { height, width } = useWindowDimensions();
@@ -15,14 +19,13 @@ export function FilterContainer() {
   return (
     <GrayLinearGradient
       styles={{
-        height: width / 2 - 36,
-        width: "50%",
+        height: width / 2,
+        width: width / 2 - 15,
         borderRadius: 20,
-        margin: 4,
       }}
     >
       <View style={[styles.headingContainer, { borderColor: colors.pressed }]}>
-        <Text style={[styles.heading, { color: colors.text }]}>Chart</Text>
+        <Text style={[styles.heading, { color: colors.text }]}>{heading}</Text>
       </View>
     </GrayLinearGradient>
   );
@@ -37,6 +40,6 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 16,
-    fontFamily: "Outfit-Regular",
+    fontFamily: "Outfit-medium",
   },
 });

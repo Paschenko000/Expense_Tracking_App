@@ -32,16 +32,13 @@ export function Dashboard() {
   }
 
   return (
-    <ScrollView
-      style={[styles.container, { backgroundColor: colors.background }]}
-    >
-      <FlatList
-        data={[1, 2, 3, 4, 5, 6, 7]}
-        renderItem={renderExpense}
-        numColumns={2}
-        keyExtractor={(item) => item.toString()}
-        scrollEnabled={false}
-      />
+    <ScrollView style={[, { backgroundColor: colors.background }]}>
+      <View style={styles.container}>
+        <FilterContainer heading="This Week" />
+        <FilterContainer heading="This Month" />
+        <FilterContainer heading="Last Month" />
+        <FilterContainer heading="This Year" />
+      </View>
     </ScrollView>
   );
 }
@@ -50,8 +47,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     flex: 1,
-    // flexDirection: "row",
-    gap: 8,
+    flexDirection: "row",
+    gap: 10,
     flexWrap: "wrap",
   },
 });
