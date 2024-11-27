@@ -50,6 +50,7 @@ Welcome to the Expense Tracker App! This app is designed to help users efficient
 #### Images
 
 Edit Expense
+
 <img src="images/manage-expense/edit-light1.png" alt="Manage Expense Screen Light" width="200"/> <img src="images/manage-expense/edit-light2.png" alt="Manage Expense Screen Dark" width="200"/>
 <img src="images/manage-expense/edit-dark1.png" alt="Manage Expense Screen Light" width="200"/> <img src="images/manage-expense/edit-dark2.png" alt="Manage Expense Screen Dark" width="200"/>
 
