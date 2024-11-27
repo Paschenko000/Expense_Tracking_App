@@ -8,8 +8,8 @@ Welcome to the Expense Tracker App! This app is designed to help users efficient
 
 #### Images
 
-![Welcome Screen Light](images/welcome/welcome-light1.png) ![Welcome Screen Light - currency selection ](images/welcome/welcome-light2.png)
-![Welcome Screen Dark](images/welcome/welcome-dark1.png) ![Welcome Screen Dark - currency selection ](images/welcome/welcome-dark2.png)
+<img src="images/welcome/welcome-light1.png" alt="Welcome Screen Light" width="200"/> <img src="images/welcome/welcome-light2.png" alt="Welcome Screen Light - currency selection" width="200"/>
+<img src="images/welcome/welcome-dark1.png" alt="Welcome Screen Dark" width="200"/> <img src="images/welcome/welcome-dark2.png" alt="Welcome Screen Dark - currency selection" width="200"/>
 
 - Select your preferred currency on the welcome screen (this cannot be changed later in the app).
 
@@ -17,7 +17,7 @@ Welcome to the Expense Tracker App! This app is designed to help users efficient
 
 #### Images
 
-![All Expenses Screen Light](images/all-expenses/all-expenses-light.png) ![All Expenses Screen Dark](images/all-expenses/all-expenses-dark.png)
+<img src="images/all-expenses/all-expenses-light.png" alt="All Expenses Screen Light" width="200"/> <img src="images/all-expenses/all-expenses-dark.png" alt="All Expenses Screen Dark" width="200"/>
 
 - View all registered expenses organized by categories.
 - Tap on a category to see detailed expenses specific to that category.
@@ -27,7 +27,7 @@ Welcome to the Expense Tracker App! This app is designed to help users efficient
 
 #### Images
 
-![Category Expenses Screen Light](images/category-expenses/category-expenses-light.png) ![Category Expenses Screen Dark](images/category-expenses/category-exoenses-dark.png)
+<img src="images/category-expenses/category-expenses-light.png" alt="Category Expenses Screen Light" width="200"/> <img src="images/category-expenses/category-exoenses-dark.png" alt="Category Expenses Screen Dark" width="200"/>
 
 - View all expenses for a specific category.
 - Tap on an expense to navigate to the Manage Expense Screen, where you can:
@@ -38,7 +38,7 @@ Welcome to the Expense Tracker App! This app is designed to help users efficient
 
 #### Images
 
-![Recent Expenses Screen Light](images/recent-expenses/recent-expenses-light.png) ![Recent Expenses Screen Dark](images/recent-expenses/recent-expenses-dark.png)
+<img src="images/recent-expenses/recent-expenses-light.png" alt="Recent Expenses Screen Light" width="200"/> <img src="images/recent-expenses/recent-expenses-dark.png" alt="Recent Expenses Screen Dark" width="200"/>
 
 - View all expenses from the current month, grouped by date for better clarity.
 - Tap on an expense to navigate to the Manage Expense Screen, where you can:
@@ -49,14 +49,14 @@ Welcome to the Expense Tracker App! This app is designed to help users efficient
 
 #### Images
 
-Edit Expense 
-![Manage Expense Screen Light](images/manage-expense/edit-light1.png) ![Manage Expense Screen Dark](images/manage-expense/edit-light2.png)
-![Manage Expense Screen Light](images/manage-expense/edit-dark1.png) ![Manage Expense Screen Dark](images/manage-expense/edit-dark2.png)
+Edit Expense
+<img src="images/manage-expense/edit-light1.png" alt="Manage Expense Screen Light" width="200"/> <img src="images/manage-expense/edit-light2.png" alt="Manage Expense Screen Dark" width="200"/>
+<img src="images/manage-expense/edit-dark1.png" alt="Manage Expense Screen Light" width="200"/> <img src="images/manage-expense/edit-dark2.png" alt="Manage Expense Screen Dark" width="200"/>
 
 Add Expense
 
-![Manage Expense Screen Light](images/manage-expense/add-light1.png) ![Manage Expense Screen Dark](images/manage-expense/add-light2.png)
-![Manage Expense Screen Light](images/manage-expense/add-dark1.png) ![Manage Expense Screen Dark](images/manage-expense/add-dark2.png)
+<img src="images/manage-expense/add-light1.png" alt="Manage Expense Screen Light" width="200"/> <img src="images/manage-expense/add-light2.png" alt="Manage Expense Screen Dark" width="200"/>
+<img src="images/manage-expense/add-dark1.png" alt="Manage Expense Screen Light" width="200"/> <img src="images/manage-expense/add-dark2.png" alt="Manage Expense Screen Dark" width="200"/>
 
 - Add a new expense using the plus button located on the top-right corner of the All Expenses and Recent Expenses screens.
 - Update or delete existing expenses from this screen.
