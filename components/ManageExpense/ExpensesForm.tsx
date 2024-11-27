@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { IExpense } from "@/modals/expenses.model";
 import { Input } from "@/ui/Input";
-import { IconButton } from "@/ui/IconBtn";
 import { CategoriesData, ICategory } from "@/constants/Categories";
 import { Button } from "@/ui/Button";
 import { Colors } from "@/constants/Colors";

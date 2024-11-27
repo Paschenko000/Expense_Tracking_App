@@ -1,6 +1,7 @@
 import { createContext, Reducer, useEffect, useReducer } from "react";
 import { getItem, storeData } from "@/utils/storage";
 import { IExpense } from "@/modals/expenses.model";
+import { LoadingOverlay } from "@/ui/LoadingOverlay";
 
 export type TExpenseData = {
   description: string;
@@ -104,9 +105,9 @@ export function ExpensesContextProvider({
     updateExpense: updateExpense,
   };
 
-  // if (expensesState === null) {
-  //   return <LoadingOverlay />;
-  // }
+  if (expensesState === null) {
+    return <LoadingOverlay />;
+  }
 
   return (
     <ExpensesContext.Provider value={value}>

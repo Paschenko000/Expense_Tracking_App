@@ -41,12 +41,22 @@
             "./assets/fonts/OutfitRegular.ttf"
           ]
         }
+      ],
+      [
+        "expo-dev-launcher",
+        {
+          "launchMode": "most-recent"
+        }
       ]
     ],
     "extra": {
       "eas": {
         "projectId": "e11fa0f6-7145-4630-a263-08c6055d32f2"
       }
+    },
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/e11fa0f6-7145-4630-a263-08c6055d32f2"
     }
   }
 }

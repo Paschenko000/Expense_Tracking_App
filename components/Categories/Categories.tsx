@@ -60,7 +60,7 @@ export function Categories({
             }}
             data={categoryExpenses}
             renderItem={renderExpense}
-            keyExtractor={(item) => item[0].category.id.toString()}
+            keyExtractor={(item) => item[0].category.name + item[0].category.id}
             numColumns={2}
           />
         </>

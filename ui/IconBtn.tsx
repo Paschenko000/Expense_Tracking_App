@@ -1,6 +1,5 @@
-import { Pressable, View, StyleSheet, useColorScheme } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Colors } from "@/constants/Colors";
 
 type IconBtnProps = {
   icon: string;
@@ -12,11 +11,12 @@ export function IconButton({ icon, size, color, onPress }: IconBtnProps) {
   return (
     <Pressable
       onPress={onPress}
-      style={({ pressed }) => pressed && styles.pressed}
+      style={({ pressed }) => [
+        styles.buttonContainer,
+        pressed && styles.pressed,
+      ]}
     >
-      <View style={styles.buttonContainer}>
-        <Ionicons name={icon} size={size} color={color} />
-      </View>
+      <Ionicons name={icon} size={size} color={color} />
     </Pressable>
   );
 }

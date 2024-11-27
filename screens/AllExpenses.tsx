@@ -4,7 +4,6 @@ import { ErrorOverlay } from "@/ui/ErrorOverlay";
 import { Categories } from "@/components/Categories/Categories";
 import { getItem } from "@/utils/storage";
 import { ICurrency } from "@/constants/Currencies";
-import { sortExpenses } from "@/utils/date";
 
 export function AllExpenses() {
   const [errorState, setErrorState] = useState<string>();
