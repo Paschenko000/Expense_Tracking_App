@@ -1,6 +1,73 @@
-# Welcome to your Expo app 👋
+# Welcome to Expense Tracking App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to the Expense Tracker App! This app is designed to help users efficiently track and manage their expenses, ensuring better control over personal finances.
+
+## Features
+ 
+### Welcome Screen 
+
+#### Images
+
+![Welcome Screen Light](images/welcome/welcome-light1.png) ![Welcome Screen Light - currency selection ](images/welcome/welcome-light2.png)
+![Welcome Screen Dark](images/welcome/welcome-dark1.png) ![Welcome Screen Dark - currency selection ](images/welcome/welcome-dark2.png)
+
+- Select your preferred currency on the welcome screen (this cannot be changed later in the app).
+
+### All Expenses Screen
+
+#### Images
+
+![All Expenses Screen Light](images/all-expenses/all-expenses-light.png) ![All Expenses Screen Dark](images/all-expenses/all-expenses-dark.png)
+
+- View all registered expenses organized by categories.
+- Tap on a category to see detailed expenses specific to that category.
+- Add a new expense by tapping the "+" button.
+
+### Category Expenses Screen
+
+#### Images
+
+![Category Expenses Screen Light](images/category-expenses/category-expenses-light.png) ![Category Expenses Screen Dark](images/category-expenses/category-exoenses-dark.png)
+
+- View all expenses for a specific category.
+- Tap on an expense to navigate to the Manage Expense Screen, where you can:
+  - Update the details of the selected expense.
+  - Delete the expense.
+
+###  Recent Expenses Screen
+
+#### Images
+
+![Recent Expenses Screen Light](images/recent-expenses/recent-expenses-light.png) ![Recent Expenses Screen Dark](images/recent-expenses/recent-expenses-dark.png)
+
+- View all expenses from the current month, grouped by date for better clarity.
+- Tap on an expense to navigate to the Manage Expense Screen, where you can:
+  - Update the details of the selected expense.
+  - Delete the expense.
+
+### Manage Expense Screen
+
+#### Images
+
+Edit Expense 
+![Manage Expense Screen Light](images/manage-expense/edit-light1.png) ![Manage Expense Screen Dark](images/manage-expense/edit-light2.png)
+![Manage Expense Screen Light](images/manage-expense/edit-dark1.png) ![Manage Expense Screen Dark](images/manage-expense/edit-dark2.png)
+
+Add Expense
+
+![Manage Expense Screen Light](images/manage-expense/add-light1.png) ![Manage Expense Screen Dark](images/manage-expense/add-light2.png)
+![Manage Expense Screen Light](images/manage-expense/add-dark1.png) ![Manage Expense Screen Dark](images/manage-expense/add-dark2.png)
+
+- Add a new expense using the plus button located on the top-right corner of the All Expenses and Recent Expenses screens.
+- Update or delete existing expenses from this screen.
+
+## Key Technologies Used
+
+- [Expo](https://docs.expo.dev/more/expo-cli/): A framework for building React Native apps quickly and efficiently.
+- [useContext](https://react.dev/reference/react/useContext): For seamless state management across the app.
+- [MMKV](https://www.npmjs.com/package/react-native-mmkv): A lightweight and fast storage solution for storing expense data locally.
+- [Theming](https://docs.expo.dev/develop/user-interface/color-themes/): Supports both dark and light themes for an improved user experience.
+- [Outfit Font](https://fonts.google.com/specimen/Outfit): For a modern and clean typography style.
 
 ## Get started
 
